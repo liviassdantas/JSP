@@ -5,12 +5,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 //iniciando a classe de conexão
 public class ConexaoBanco {
-    public static String status = "Não conectou";
+           public static String status = "";
     
   //construtor da classe
     public ConexaoBanco(){
+        
     }
   
  //metódo da conexão
@@ -20,16 +22,14 @@ public class ConexaoBanco {
             
            try{
                //carregando o jdbc padrão
-              String driverName = "com.mysql.jdbc.Driver";
+              String driverName = "com.mysql.cj.jdbc.Driver";
               Class.forName(driverName);
+              //url: nome do server + nome do banco +teste caso dê erro de fuso horário
+              String url =  "jdbc:mysql://localhost:3306/trabalho?useTimezone=true&serverTimezone=UTC";
                     //configurando a conexão com o mysql
-                    String serverName = "localhost"; //nome do servidor
-                    String mydatabase = "mysql"; //nome do bd
-                    String url = "jdbc:mysql://"+ serverName +"/"+mydatabase;
                     String username = "root";
-                    String password = "";
-                    
-                    connection = DriverManager.getConnection(url, username, password);
+                    String password = "senha";
+                   connection = DriverManager.getConnection(url, username, password);
                     
                 //testa sua conexão
                 if(connection != null){
@@ -42,12 +42,16 @@ public class ConexaoBanco {
            }catch (ClassNotFoundException e){
                System.out.println("O driver especificado não foi especificado");
                return null;
+         
                
            }catch (SQLException e){
                System.out.println("Não foi possível conectar ao banco de dados");
+               System.out.println(e);
                return null;
            }
+           
     }
+   
     //método que retorna o status da conexão
     public static String statusConection(){
         return status;
@@ -67,4 +71,5 @@ public class ConexaoBanco {
         return ConexaoBanco.getConexaoBanco();
 
 }
+    
 }
