@@ -22,14 +22,14 @@ public class ConexaoBanco {
             
            try{
                //carregando o jdbc padrão
-              String driverName = "com.mysql.cj.jdbc.Driver"; //biblioteca do conector(mysql Conector/J 8.0 -  a biblioteca do 5.7 é outra!)
+              String driverName = "com.mysql.cj.jdbc.Driver";
               Class.forName(driverName);
               //url: nome do server + nome do banco +teste caso dê erro de fuso horário
               String url =  "jdbc:mysql://localhost:3306/trabalho?useTimezone=true&serverTimezone=UTC";
                     //configurando a conexão com o mysql
                     String username = "root";
-                    String password = "senha";
-                   connection = DriverManager.getConnection(url, username, password);//setando a conexão com o banco
+                    String password = "alohomora2";
+                   connection = DriverManager.getConnection(url, username, password);
                     
                 //testa sua conexão
                 if(connection != null){
